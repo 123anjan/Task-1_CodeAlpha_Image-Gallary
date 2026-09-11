@@ -1,33 +1,107 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Modern Interactive Gallary</title>
 
     <!-- CSS Files link -->
-    <link rel="stylesheet" href="assets/CSS files/style.css">
-    <link rel="stylesheet" href="assets/CSS files/responsive.css">
-    <link rel="stylesheet" href="assets/CSS files/Animations.css">
+    <link rel="stylesheet" href="assets/CSS files/style.css" />
+    <link rel="stylesheet" href="assets/CSS files/responsive.css" />
+    <link rel="stylesheet" href="assets/CSS files/Animations.css" />
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
     <header class="header">
-        <h1 class="header-title">Visual showcase</h1>
-        <p class="header-subtitle">Explore handpicked collection across categories</p>
+      <h1 class="header-title">Visual showcase</h1>
+      <p class="header-subtitle">
+        Explore handpicked collection across categories
+      </p>
     </header>
 
     <main class="gallery-container">
-    <!-- Category Filter Controls -->
-    <nav class="filter-wrapper">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="nature">Nature</button>
-      <button class="filter-btn" data-filter="birds">birds</button>
-      <button class="filter-btn" data-filter="mountains"> Mountains</button>
-      <button class="filter-btn" data-filter="starry-sky">Starry-sky</button>
-    </nav>
+      <!-- Category Filter Controls -->
+      <nav class="filter-wrapper">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="nature">Nature</button>
+        <button class="filter-btn" data-filter="birds">birds</button>
+        <button class="filter-btn" data-filter="mountains">Mountains</button>
+        <button class="filter-btn" data-filter="starry-sky">Starry-sky</button>
+      </nav>
+      <!-- Gallery Main section -->
+      <section class="gallery-grid" id="galleryGrid">
+        <!-- Nature Items -->
+        <article class="gallery-item" data-category="nature">
+          <img src="" alt="Mountain Lake" loading="lazy" />
+          <div class="overlay">
+            <h3>Serene Mountain Lake</h3>
+            <p>Nature</p>
+          </div>
+        </article>
 
-  </main>
-</body>
+        <article class="gallery-item" data-category="nature">
+          <img src="" alt="Foggy Forest" loading="lazy" />
+          <div class="overlay">
+            <h3>Misty Forest Trail</h3>
+            <p>Nature</p>
+          </div>
+        </article>
+
+        <!-- Birds -->
+        <article class="gallery-item" data-category="Birds">
+          <img src="" alt="Modern Building" loading="lazy" />
+          <div class="overlay">
+            <h3>Geometric Skyscraper</h3>
+            <p>Birds</p>
+          </div>
+        </article>
+
+        <article class="gallery-item" data-category="Birds">
+          <img src="" alt="Glass Tower" loading="lazy" />
+          <div class="overlay">
+            <h3>Modern Glass Structure</h3>
+            <p>Birds</p>
+          </div>
+        </article>
+
+        <!-- Mountains -->
+        <article class="gallery-item" data-category="mountains">
+          <img src="" alt="Circuit Board" loading="lazy" />
+          <div class="overlay">
+            <h3>Digital Circuitry</h3>
+            <p>mountains</p>
+          </div>
+        </article>
+
+        <article class="gallery-item" data-category="mountains">
+          <img src="" alt="Matrix Code" loading="lazy" />
+          <div class="overlay">
+            <h3>Cyber Security Network</h3>
+            <p>mountains</p>
+          </div>
+        </article>
+
+        <!-- starry-sky -->
+        <article class="gallery-item" data-category="starry-sky">
+          <img src="" alt="Circuit Board" loading="lazy" />
+          <div class="overlay">
+            <h3>Digital Circuitry</h3>
+            <p>starry-sky</p>
+          </div>
+        </article>
+
+        <article class="gallery-item" data-category="starry-sky">
+          <img src="" alt="Matrix Code" loading="lazy" />
+          <div class="overlay">
+            <h3>Cyber Security Network</h3>
+            <p>starry-sky</p>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
 </html>
