@@ -1,0 +1,4 @@
+/* Page Header Animation */
+.header {
+  animation: fadeInDown 0.8s ease-out forwards;
+}
