@@ -1,0 +1,108 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .header-title {
+    font-size: 1.8rem;
+  }
+
+  .gallery-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gallery-item {
+    width: 100%;
+  }
+
+  .filter-wrapper {
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .lightbox-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .prev-btn {
+    left: 0.5rem;
+  }
+
+  .next-btn {
+    right: 0.5rem;
+  }
+
+  .lightbox-close {
+    top: 1rem;
+    right: 1rem;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .gallery-grid {
+    flex-direction: row;
+  }
+
+  .gallery-item {
+    width: calc(50% - 0.75rem);
+  }
+
+  .lightbox-nav {
+    left: 1.5rem;
+  }
+
+  .next-btn {
+    right: 1.5rem;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .header-title {
+    font-size: 2.2rem;
+  }
+
+  .gallery-item {
+    width: calc(50% - 0.75rem);
+  }
+
+  .filter-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .header-title {
+    font-size: 2.5rem;
+  }
+
+  .gallery-item {
+    width: calc(33.333% - 1rem);
+  }
+
+  .filter-btn:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .gallery-container {
+    max-width: 1200px;
+  }
+
+  .gallery-item {
+    width: calc(33.333% - 1rem);
+  }
+
+  .gallery-item img {
+    height: 300px;
+  }
+}
