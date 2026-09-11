@@ -295,10 +295,12 @@ body {
   font-size: 2rem;
 }
 
-.prev-btn {
-  left: 2rem;
+.next-btn {
+  left: auto !important;
+  right: 1.5rem;
 }
 
-.next-btn {
-  right: 2rem;
+.prev-btn {
+  right: auto !important;
+  left: 1.5rem;
 }
