@@ -37,3 +37,11 @@
     transform: scale(1);
   }
 }
+/* Category Filter Fade In Animation */
+.gallery-item.show {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.gallery-item.hide {
+  display: none;
+}
