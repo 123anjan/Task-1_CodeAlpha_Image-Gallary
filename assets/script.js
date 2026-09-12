@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
   const lightboxCaption = document.getElementById("lightboxCaption");
+  const lightboxContent = document.querySelector(".lightbox-content");
   const lightboxClose = document.getElementById("lightboxClose");
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
@@ -13,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateVisibleItems() {
     visibleItems = Array.from(galleryItems).filter(
-      (item) => !item.classList.contains("hide")
+      (item) => !item.classList.contains("hide"),
     );
   }
 
@@ -69,7 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showPrevImage() {
-    currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+    currentIndex =
+      (currentIndex - 1 + visibleItems.length) % visibleItems.length;
     openLightbox(currentIndex);
   }
 
@@ -102,4 +104,77 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateVisibleItems();
   galleryItems.forEach((item) => item.classList.add("show"));
+
+  // Reusable image download function
+  async function downloadImage(imageSrc) {
+    try {
+      const response = await fetch(imageSrc);
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+
+      const tempLink = document.createElement("a");
+      tempLink.href = blobUrl;
+      tempLink.download = imageSrc.split("/").pop() || "download.jpg";
+
+      document.body.appendChild(tempLink);
+      tempLink.click();
+      document.body.removeChild(tempLink);
+
+      URL.revokeObjectURL(blobUrl);
+    } catch (err) {
+      const tempLink = document.createElement("a");
+      tempLink.href = imageSrc;
+      tempLink.download = imageSrc.split("/").pop() || "download.jpg";
+      tempLink.target = "_blank";
+      tempLink.click();
+    }
+  }
+
+  // 1. Lightbox Download Button Setup
+  const downloadBtn = document.createElement("a");
+  downloadBtn.id = "lightboxDownloadBtn";
+  downloadBtn.innerHTML = `
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+    <polyline points="7 10 12 15 17 10"></polyline>
+    <line x1="12" y1="15" x2="12" y2="3"></line>
+  </svg>
+  <span>Download</span>
+`;
+
+  if (lightboxContent) {
+    lightboxContent.appendChild(downloadBtn);
+  }
+
+  downloadBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (lightboxImg && lightboxImg.src) {
+      downloadImage(lightboxImg.src);
+    }
+  });
+
+  // 2. Individual Gallery Card Download Buttons Setup
+  document.querySelectorAll(".gallery-item").forEach((item) => {
+    const overlay = item.querySelector(".overlay");
+    const img = item.querySelector("img");
+    if (!overlay || !img) return;
+
+    const cardDownloadBtn = document.createElement("button");
+    cardDownloadBtn.className = "card-download-btn";
+    cardDownloadBtn.setAttribute("aria-label", "Download image");
+    cardDownloadBtn.innerHTML = `
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+      <polyline points="7 10 12 15 17 10"></polyline>
+      <line x1="12" y1="15" x2="12" y2="3"></line>
+    </svg>
+  `;
+
+    cardDownloadBtn.addEventListener("click", (e) => {
+      e.stopPropagation(); // Prevents Lightbox from opening on download click
+      downloadImage(img.src);
+    });
+
+    overlay.appendChild(cardDownloadBtn);
+  });
 });
