@@ -6,10 +6,11 @@
 }
 /* CSS Variables */
 :root {
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
+  --bg-gradient: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 50%, #fce7f3 100%);
+
+  --bg-card: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
 
   /* Gradients */
   --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
@@ -27,14 +28,16 @@
   /* Dimensions & Effects */
   --radius-sm: 8px;
   --radius-lg: 16px;
-  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 25px -5px rgba(99, 102, 241, 0.12);
+  --shadow-hover: 0 20px 30px -10px rgba(99, 102, 241, 0.25);
   --transition-fast: 0.3s ease;
   --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--bg-primary);
+  background-color: var(--bg-gradient);
+  background-attachment: fixed;
   color: var(--text-main);
   min-height: 100vh;
   display: flex;
@@ -123,7 +126,6 @@ body {
   transform: translateY(0) scale(0.97);
 }
 
-
 /* Gallery Container & Filters */
 .gallery-container {
   width: 100%;
@@ -139,9 +141,10 @@ body {
 }
 
 .filter-btn {
-  background: var(--bg-secondary);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
   color: var(--text-muted);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   padding: 0.6rem 1.4rem;
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -170,15 +173,21 @@ body {
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: var(--card-gradient);
+  background: var(--card);
   box-shadow: var(--shadow-lg);
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  transition:
+    transform var(--transition-smooth),
+    box-shadow var(--transition-smooth);
+  content-visibility: auto;
+  contain-intrinsic-size: 300px;
 }
 
 .gallery-item img {
+  aspect-ratio: 4 / 3;
   width: 100%;
-  height: 280px;
+  height: 100%;
   object-fit: cover;
   display: block;
   transition: transform var(--transition-smooth);
@@ -193,7 +202,9 @@ body {
   background: var(--overlay-gradient);
   transform: translateY(100%);
   opacity: 0;
-  transition: transform var(--transition-smooth), opacity var(--transition-smooth);
+  transition:
+    transform var(--transition-smooth),
+    opacity var(--transition-smooth);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -227,20 +238,21 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(15, 23, 42, 0.92);
-  backdrop-filter: blur(8px);
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--transition-fast);
-  z-index: 1000;
+  z-index: 9999;
 }
 
 .lightbox.active {
   opacity: 1;
   pointer-events: auto;
+  display: flex;
 }
 
 .lightbox-content {
@@ -270,8 +282,8 @@ body {
 .lightbox-close,
 .lightbox-nav {
   position: absolute;
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
@@ -282,11 +294,13 @@ body {
   align-items: center;
   justify-content: center;
   transition: var(--transition-fast);
+  z-index: 10010;
 }
 
 .lightbox-close:hover,
 .lightbox-nav:hover {
   background: var(--primary-gradient);
+  transform: scale(1.1);
 }
 
 .lightbox-close {
