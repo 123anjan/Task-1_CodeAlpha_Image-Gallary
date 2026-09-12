@@ -30,10 +30,12 @@
 
   .prev-btn {
     left: 0.5rem;
+    right: auto;
   }
 
   .next-btn {
     right: 0.5rem;
+    left: auto;
   }
 
   .lightbox-close {
@@ -52,12 +54,14 @@
     width: calc(50% - 0.75rem);
   }
 
-  .lightbox-nav {
+  .prev-btn {
     left: 1.5rem;
+    right: auto;
   }
 
   .next-btn {
     right: 1.5rem;
+    left: auto;
   }
 }
 
