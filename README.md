@@ -119,7 +119,8 @@ Modern web applications frequently rely on bloated lightbox dependencies or heav
 
 To add a new image card to your gallery grid inside `index.html`, append the following structure:
 
-```html
+```
+html
 <article class="gallery-item" data-category="nature">
   <div class="image-wrapper">
     <img src="./assets/images/nature-1.jpg" alt="Mountain Landscape" loading="lazy" />
@@ -130,3 +131,46 @@ To add a new image card to your gallery grid inside `index.html`, append the fol
     </div>
   </div>
 </article>
+```
+## Documentation
+
+### 🏛️ Architecture Guide
+
+- **Asset Loading Hierarchy:** Complete separation of presentation (`assets/css/`) and interaction logic (`script.js`). Stylesheets execute render-critical rules while scripts run deferred.
+- **Event Propagation Strategy:** Individual card download triggers stop event propagation (`e.stopPropagation()`) to prevent accidental Lightbox modal triggers when attempting a file download.
+- **Memory Management:** Blob URLs created during binary image downloads are automatically revoked via `URL.revokeObjectURL()` immediately after execution to prevent browser memory leaks.
+
+## Component Deep Dive
+
+- **Lightbox Controller (`script.js`):** Intercepts gallery image clicks, populates the modal container dynamically, and manages focus traps and keyboard bindings (`Escape`, `ArrowLeft`, `ArrowRight`).
+- **Filtering Engine:** Iterates over `.gallery-item` data attributes, calculating dynamic display values while maintaining CSS animation keyframes.
+- **Styling Tokens (`assets/css/style.css`):** Centralized CSS custom properties managing themes, backdrop blurs, transition timings, and glassmorphic card overlays.
+
+### 🛠️ Developer Manual
+
+- **Customizing Design Tokens:** Edit values inside `:root` inside `style.css` to update primary gradients, overlay colors, and border radii across the site.
+- **Extending Download Behaviors:** Modify `downloadImage()` in `script.js` to handle custom fallback endpoints or third-party image hosting services.
+
+## Quick Start & Setup Guide
+
+### Prerequisites
+
+Ensure your development environment contains:
+
+- **Modern Web Browser:** Google Chrome (v90+), Mozilla Firefox (v88+), Microsoft Edge (v90+).
+- **Code Editor:** Visual Studio Code (Recommended), Sublime Text, or WebStorm.
+- **Version Control:** Git CLI and GitHub (v2.25+).
+## Installation & Local Execution
+
+1. **Clone the Git Repository:**
+
+   ```bash
+   git clone https://github.com/your-username/filterable-image-gallery.git
+
+Navigate to the Root Directory:
+
+cd filterable-image-gallery
+Launch the Local Application:
+Method 1 (VS Code Live Server - Recommended): Right-click index.html and select Open with Live Server.
+Method 2 (Node Static Server): Run npx serve . inside the root directory.
+Method 3 (Direct Browser File): Open index.html directly in any web browser.
