@@ -115,7 +115,7 @@ Modern web applications frequently rely on bloated lightbox dependencies or heav
 ### Mobile Hamburger menu Views
 | Hamburger menu toggle View |
 | :---: |
-| ![Mobile menu toggle View](https://github.com/123anjan/Task-1_CodeAlpha_Image-Gallary/blob/main/assets/Images/Hamburger_menu_Toggle.gif) | 
+| ![Mobile menu toggle View](https://github.com/123anjan/Task-1_CodeAlpha_Image-Gallary/blob/main/assets/Images/Hamburger_menu_Toggle.mp4) | 
 
 ---
 
