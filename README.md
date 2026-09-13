@@ -94,6 +94,7 @@ Modern web applications frequently rely on bloated lightbox dependencies or heav
 
 ### Core Desktop Application Views
 | Primary Gallery View |
+| :---: |
 | ![Desktop View](assets/images/desktopimg_3.png) | 
 
 ### Interactive Lightbox & Overlay Features
@@ -113,6 +114,7 @@ Modern web applications frequently rely on bloated lightbox dependencies or heav
 ---
 ### Mobile Hamburger menu Views
 | Hamburger menu toggle View |
+| :---: |
 | ![Mobile menu toggle View](assets/images/Hamburger_menu_Toggle.mp4) | 
 
 ---
