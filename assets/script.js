@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const filterBtns = document.querySelectorAll(".filter-btn");
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const filterWrapper = document.querySelector(".filter-wrapper");
   const galleryItems = document.querySelectorAll(".gallery-item");
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
@@ -105,6 +107,26 @@ document.addEventListener("DOMContentLoaded", () => {
   updateVisibleItems();
   galleryItems.forEach((item) => item.classList.add("show"));
 
+  // Hamburger Menu Toggle Logic
+
+if (hamburgerBtn && filterWrapper) {
+  
+  // 1. Toggle Menu Open / Close
+  hamburgerBtn.addEventListener("click", () => {
+    hamburgerBtn.classList.toggle("active");
+    filterWrapper.classList.toggle("active");
+  });
+
+  // 2. Auto-close menu when a filter button is clicked on mobile
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (window.innerWidth <= 768) {
+        hamburgerBtn.classList.remove("active");
+        filterWrapper.classList.remove("active");
+      }
+    });
+  });
+}
   // Reusable image download function
   async function downloadImage(imageSrc) {
     try {
