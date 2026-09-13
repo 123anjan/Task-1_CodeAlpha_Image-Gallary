@@ -100,7 +100,7 @@ Modern web applications frequently rely on bloated lightbox dependencies or heav
 ### Interactive Lightbox & Overlay Features
 | Dynamic Lightbox Modal | Card Hover & Download Overlay |
 | :---: | :---: |
-| ![Lightbox View](assets/images/desktopimg_2.png) | ![Card Download Overlay](assets/images/desktopimg_1.png) |
+| ![Lightbox View](https://github.com/123anjan/Task-1_CodeAlpha_Image-Gallary/blob/main/assets/Images/desktopimg_2.png) | ![Card Download Overlay](https://github.com/123anjan/Task-1_CodeAlpha_Image-Gallary/blob/main/assets/Images/desktopimg_1.png) |
 
 ---
 
@@ -109,13 +109,13 @@ Modern web applications frequently rely on bloated lightbox dependencies or heav
 ### Core Responsive Viewports
 | Mobile Gallery Grid | Mobile Lightbox Modal |
 | :---: | :---: |
-| ![Mobile View](https://github.com/123anjan/Task-1_CodeAlpha_Image-Gallary/blob/main/assets/Images/Mobileimg.png) | ![Mobile Lightbox](assets/images/mobileimg3.png) |
+| ![Mobile View](https://github.com/123anjan/Task-1_CodeAlpha_Image-Gallary/blob/main/assets/Images/Mobileimg.png) | ![Mobile Lightbox](https://github.com/123anjan/Task-1_CodeAlpha_Image-Gallary/blob/main/assets/Images/mobileimg3.png) |
 
 ---
 ### Mobile Hamburger menu Views
 | Hamburger menu toggle View |
 | :---: |
-| ![Mobile menu toggle View](assets/images/Hamburger_menu_Toggle.mp4) | 
+| ![Mobile menu toggle View](https://github.com/123anjan/Task-1_CodeAlpha_Image-Gallary/blob/main/assets/Images/Hamburger_menu_Toggle.mp4) | 
 
 ---
 
