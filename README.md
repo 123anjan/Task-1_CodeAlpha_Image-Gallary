@@ -95,7 +95,7 @@ Modern web applications frequently rely on bloated lightbox dependencies or heav
 ### Core Desktop Application Views
 | Primary Gallery View |
 | :---: |
-| ![Desktop View](assets/images/desktopimg_3.png) | 
+| ![Desktop View](https://github.com/123anjan/Task-1_CodeAlpha_Image-Gallary/blob/main/assets/Images/desktopimg_3.png) | 
 
 ### Interactive Lightbox & Overlay Features
 | Dynamic Lightbox Modal | Card Hover & Download Overlay |
