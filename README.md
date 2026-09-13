@@ -94,7 +94,6 @@ Modern web applications frequently rely on bloated lightbox dependencies or heav
 
 ### Core Desktop Application Views
 | Primary Gallery View |
-| :---: | :---: |
 | ![Desktop View](assets/images/desktopimg_3.png) | 
 
 ### Interactive Lightbox & Overlay Features
