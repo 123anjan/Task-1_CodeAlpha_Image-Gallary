@@ -6,22 +6,38 @@
     <title>Modern Interactive Gallary</title>
 
     <!-- CSS Files link -->
-    <link rel="stylesheet" href="assets/CSS files/style.css" />
-    <link rel="stylesheet" href="assets/CSS files/responsive.css" />
-    <link rel="stylesheet" href="assets/CSS files/Animations.css" />
+    <link rel="stylesheet" href="assets/CSS_files/style.css" />
+    <link rel="stylesheet" href="assets/CSS_files/responsive.css" />
+    <link rel="stylesheet" href="assets/CSS_files/Animations.css" />
+
     <!-- Font Awesome Icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+
+    <!--Favicon SVG -->
+    <link rel="icon" type="image/svg+xml" href="assets/Images/fav.svg" />
+    <!--  script file -->
     <script src="assets/script.js" defer></script>
   </head>
   <body>
     <header class="header">
-      <h1 class="header-title">Visual showcase</h1>
+      <h1 class="header-title">Image Gallery</h1>
       <p class="header-subtitle">
-        Explore handpicked collection across categories
+        Explore breathtaking nature & landscape photography
       </p>
+
+      <!-- Hamburger Toggle Button -->
+      <button
+        class="hamburger"
+        id="hamburgerBtn"
+        aria-label="Toggle navigation menu"
+      >
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
     </header>
 
     <main class="gallery-container">
@@ -499,6 +515,5 @@
         <div class="lightbox-caption" id="lightboxCaption"></div>
       </div>
     </div>
-    
   </body>
 </html>
