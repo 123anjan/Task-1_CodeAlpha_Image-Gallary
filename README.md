@@ -93,14 +93,14 @@ Modern web applications frequently rely on bloated lightbox dependencies or heav
 ## Screenshots
 
 ### Core Desktop Application Views
-| Primary Gallery View | Filtered Category View |
+| Primary Gallery View |
 | :---: | :---: |
-| ![Desktop View](assets/images/desktop-preview.png) | ![Filtered View](assets/images/projects-page.png) |
+| ![Desktop View](assets/images/desktopimg_3.png) | 
 
 ### Interactive Lightbox & Overlay Features
 | Dynamic Lightbox Modal | Card Hover & Download Overlay |
 | :---: | :---: |
-| ![Lightbox View](assets/images/services-page.png) | ![Card Download Overlay](assets/images/contact-validation.png) |
+| ![Lightbox View](assets/images/desktopimg_2.png) | ![Card Download Overlay](assets/images/desktopimg_1.png) |
 
 ---
 
@@ -109,7 +109,13 @@ Modern web applications frequently rely on bloated lightbox dependencies or heav
 ### Core Responsive Viewports
 | Mobile Gallery Grid | Mobile Lightbox Modal |
 | :---: | :---: |
-| ![Mobile View](assets/images/Home%20mobile.png) | ![Mobile Lightbox](assets/images/projects%20page%20mobile.png) |
+| ![Mobile View](assets/images/mobileimg.png) | ![Mobile Lightbox](assets/images/mobileimg3.png) |
+
+---
+### Mobile Hamburger menu Views
+| Hamburger menu toggle View |
+| :---: | :---: |
+| ![Mobile menu toggle View](assets/images/Hamburger_menu_Toggle.mp4) | 
 
 ---
 
@@ -234,7 +240,8 @@ plaintext
 
 Injecting download triggers directly into item overlays without opening the Lightbox modal:
 
-```javascript
+```
+javascript
 // Dynamic Gallery Card Download Injector
 document.querySelectorAll(".gallery-item").forEach((item) => {
   const overlay = item.querySelector(".overlay");
@@ -265,7 +272,8 @@ document.querySelectorAll(".gallery-item").forEach((item) => {
 
 Reusable asynchronous fetch module executing cross-origin or local binary object downloads:
 
-```javascript
+```
+javascript
 async function downloadImage(imageSrc) {
   try {
     const response = await fetch(imageSrc);
