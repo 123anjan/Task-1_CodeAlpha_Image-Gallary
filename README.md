@@ -109,7 +109,7 @@ Modern web applications frequently rely on bloated lightbox dependencies or heav
 ### Core Responsive Viewports
 | Mobile Gallery Grid | Mobile Lightbox Modal |
 | :---: | :---: |
-| ![Mobile View](assets/images/mobileimg.png) | ![Mobile Lightbox](assets/images/mobileimg3.png) |
+| ![Mobile View](https://github.com/123anjan/Task-1_CodeAlpha_Image-Gallary/blob/main/assets/Images/Mobileimg.png) | ![Mobile Lightbox](assets/images/mobileimg3.png) |
 
 ---
 ### Mobile Hamburger menu Views
