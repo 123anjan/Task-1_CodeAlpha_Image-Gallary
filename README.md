@@ -163,14 +163,252 @@ Ensure your development environment contains:
 ## Installation & Local Execution
 
 1. **Clone the Git Repository:**
+   ```
+   bash
+   git clone [https://github.com/your-username/filterable-image-gallery.git](https://github.com/your-username/filterable-image-gallery.git)
 
-   ```bash
-   git clone https://github.com/your-username/filterable-image-gallery.git
+   ```
 
-Navigate to the Root Directory:
+   2. **Navigate to the Root Directory:**
+   ```
+   bash
+   cd filterable-image-gallery
+   ```
 
-cd filterable-image-gallery
-Launch the Local Application:
-Method 1 (VS Code Live Server - Recommended): Right-click index.html and select Open with Live Server.
-Method 2 (Node Static Server): Run npx serve . inside the root directory.
-Method 3 (Direct Browser File): Open index.html directly in any web browser.
+   **Launch the Local Application:**
+
+* **Method 1 (VS Code Live Server - Recommended):** Right-click `index.html` and select **Open with Live Server**.
+* **Method 2 (Node Static Server):** Run `npx serve .` inside the root directory.
+* **Method 3 (Direct Browser File):** Open `index.html` directly in any web browser.
+
+## Repository Structure
+
+```
+plaintext
+Task-1_CodeAlpha_Image Gallary/
+├── assets/
+│   ├── css/
+│   │   ├── style.css         # Custom variables, design tokens, & base styling
+│   │   ├── responsive.css    # Responsive viewports & media query breakpoints
+│   │   └── animations.css    # Keyframes, modal transitions, & hover states
+│   ├── images/               # High-resolution gallery & project assets
+│   │   ├── desktop-preview.png
+│   │   ├── mobile-view.png
+│   │   └── lightbox-preview.png
+│   └── script.js              # Core JS module (Filtering, Lightbox, Downloads)
+├── index.html                # Semantic single-page HTML gallery layout
+├── README.md                 # Project documentation & developer manual
+└── .gitignore                # Environment & workspace exclusions
+```
+
+### Detailed System Architecture
+
+```
+plaintext
+[ User Interaction on .gallery-item ]
+           │
+           ├──> Clicked on Gallery Card Overlay / Image
+           │          │
+           │          ├──> Target: Download Button (.card-download-btn)
+           │          │       │
+           │          │       └──> e.stopPropagation() ➔ Invoke downloadImage(img.src)
+           │          │                └──> Fetch Binary Blob ➔ Trigger Native File Save
+           │          │
+           │          └──> Target: Card Body / Preview Region
+           │                  │
+           │                  └──> Open Lightbox Modal ➔ Inject Source & Bind Key Listeners
+           │
+[ Filtering Action on Category Buttons ]
+           │
+           └──> Filter Button Clicked (.filter-btn)
+                      │
+                      ├──> Remove '.active' from siblings ➔ Add '.active' to target
+                      └──> Match data-filter against item data-category
+                               ├──> Match True  ──> Remove '.hide' class (Fade In)
+                               └──> Match False ──> Add '.hide' class (Fade Out)
+```
+
+## Component & Dynamic Scripting Deep Dive
+
+### Individual Card Download & Event Stop Propagation
+
+Injecting download triggers directly into item overlays without opening the Lightbox modal:
+
+```javascript
+// Dynamic Gallery Card Download Injector
+document.querySelectorAll(".gallery-item").forEach((item) => {
+  const overlay = item.querySelector(".overlay");
+  const img = item.querySelector("img");
+  if (!overlay || !img) return;
+
+  const cardDownloadBtn = document.createElement("button");
+  cardDownloadBtn.className = "card-download-btn";
+  cardDownloadBtn.setAttribute("aria-label", "Download image");
+  cardDownloadBtn.innerHTML = `
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+      <polyline points="7 10 12 15 17 10"></polyline>
+      <line x1="12" y1="15" x2="12" y2="3"></line>
+    </svg>
+  `;
+
+  // Stop propagation to prevent opening the Lightbox modal
+  cardDownloadBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    downloadImage(img.src);
+  });
+
+  overlay.appendChild(cardDownloadBtn);
+});
+```
+# Asynchronous Cross-Origin Image Downloader
+
+Reusable asynchronous fetch module executing cross-origin or local binary object downloads:
+
+```javascript
+async function downloadImage(imageSrc) {
+  try {
+    const response = await fetch(imageSrc);
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+
+    const tempLink = document.createElement("a");
+    tempLink.href = blobUrl;
+    tempLink.download = imageSrc.split("/").pop() || "download.jpg";
+
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    document.body.removeChild(tempLink);
+
+    // Revoke memory reference
+    URL.revokeObjectURL(blobUrl);
+  } catch (err) {
+    // Fallback trigger for direct browser navigation download
+    const tempLink = document.createElement("a");
+    tempLink.href = imageSrc;
+    tempLink.download = imageSrc.split("/").pop() || "download.jpg";
+    tempLink.target = "_blank";
+    tempLink.click();
+  }
+}
+```
+# Developer Customization Manual
+
+## CSS Design Tokens & Theme Variables
+
+Modify design parameters directly within `assets/css_files/style.css`:
+
+```
+css
+/* CSS Variables */
+:root {
+  --bg-gradient: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 50%, #fce7f3 100%);
+
+  --bg-card: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+
+  /* Gradients */
+  --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  --overlay-gradient: linear-gradient(
+    to top,
+    rgba(15, 23, 42, 0.95),
+    rgba(15, 23, 42, 0)
+  );
+  --card-gradient: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.01)
+  );
+
+  /* Dimensions & Effects */
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+  --shadow-lg: 0 10px 25px -5px rgba(99, 102, 241, 0.12);
+  --shadow-hover: 0 20px 30px -10px rgba(99, 102, 241, 0.25);
+  --transition-fast: 0.3s ease;
+  --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+```
+## Quality Assurance & Automated Testing
+
+* **Markup Integrity:** Validated against W3C HTML5 standards.
+* **Accessibility Compliance:** Audited using Chrome DevTools Lighthouse to ensure clean contrast ratios, explicit ARIA labels, and full keyboard accessibility.
+* **Cross-Browser Testing:** Verified across Google Chrome, Mozilla Firefox, Microsoft Edge, and Apple Safari across desktop and mobile devices.
+
+---
+
+## Versioning & Semantic Changelog
+
+### v1.0.0 — Initial Stable Release
+
+* **Category Filtering Engine:** Instant client-side gallery sorting.
+* **Lightbox System:** Responsive modal with keyboard navigation bindings.
+* **Dual Download Functionality:** Binary download capabilities on both individual card overlays and modal viewers via Blob APIs.
+
+---
+
+## FAQ
+
+### Feedback & Support
+
+For questions, issues, or suggestions:
+
+* **Submit an Issue:** Report bugs or suggest feature requests on the GitHub Issues page.
+* **Direct Email Support:** Reach out to [anjan0306basak@gmail.com](mailto:anjan0306basak@gmail.com).
+
+---
+
+## 📹 Video Explanation & Social Demonstration
+
+Check out the full walkthrough and live demonstration of this project on LinkedIn!
+
+I posted a video breaking down the overall project structure, how the download logic handles asynchronous image blobs, and how the responsive layout holds up across mobile and desktop viewports.
+
+👉 **[Watch the Project Explanation Video on LinkedIn](https://linkedin.com)**
+
+---
+
+## Contribution Guidelines & Workflow
+
+1. **Fork the Repository** on GitHub.
+2. **Create a Feature Branch:** `git checkout -b feat/NewFeature`
+3. **Commit Your Changes:** `git commit -m "feat: add touch swipe support to lightbox"`
+4. **Push to the Branch:** `git push origin feat/NewFeature`
+5. **Open a Pull Request** with a detailed summary of your additions.
+
+## Deployment & Production Hosting
+
+### GitHub Pages (Recommended)
+
+1. Push your repository to GitHub.
+2. Go to **Settings → Pages**.
+3. Under **Source**, select **Deploy from a branch** and choose **main / root**.
+4. Click **Save**.
+5. Your site will be live at:
+
+   `https://<your-username>.github.io/<repo-name>/`
+
+## License
+
+Distributed under the MIT License.
+
+## Pre-Flight Developer Checklist
+
+- [ ] **Path Resolution:** Verified that all style and script links use correct relative references (`./assets/`).
+
+- [ ] **Event Bubbling:** Confirmed `e.stopPropagation()` prevents the Lightbox modal from triggering when clicking individual card download buttons.
+
+- [ ] **Viewport Scalability:** Tested responsiveness across `320px`, `480px`, `768px`, `1024px`, and `1440px` viewports.
+
+- [ ] **Memory Management:** Verified `URL.revokeObjectURL()` cleans up memory allocations after image downloads complete.
+
+## Common Pitfalls & Architectural Solutions
+
+### Cross-Origin Image Downloads Opening in New Tabs
+
+**Solution:** Fetch the target image as an asynchronous `Blob`, convert it into an Object URL, and programmatically click a temporary `<a>` element configured with the `download` attribute.
+
+### Lightbox Triggering Simultaneously on Download Click
+
+**Solution:** Attach `e.stopPropagation()` inside the card download button's click event listener.
